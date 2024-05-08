@@ -1,0 +1,31 @@
+body{
+    margin: 0 auto;
+    background-color: #e7f5ff;
+}
+header {
+    height: 10vh;
+    width: 100%;
+    padding: 10px;
+    background-color: #002049;
+    flex-wrap: wrap;
+    text-align: center;
+}
+form {
+    width: 20%;
+    background-color: #002049; 
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 10px;
+}
+.login_form{
+    padding-top: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.error_login{
+    color: red;
+}

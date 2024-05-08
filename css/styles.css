@@ -1,0 +1,26 @@
+*{
+    background-color: #002049;
+}
+body{
+    margin: 0 auto;
+}
+#derecha{
+    width: 50%;
+    position: fixed;
+    height: 100%;
+}
+#contenedor_derecha{
+    margin-left: 50%;
+}
+#boton{
+    background-color: #a6c2d5;
+}
+#todo{
+    width: 100%;
+}
+#contenedor_dentro_izq{
+    border-radius: 1px solid black;
+    border: #a6c2d5;
+
+}
+
