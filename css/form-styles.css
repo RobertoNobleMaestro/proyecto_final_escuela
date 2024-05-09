@@ -1,6 +1,8 @@
 body{
     margin: 0 auto;
     background-color: #e7f5ff;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
 }
 header {
     height: 10vh;
@@ -11,21 +13,69 @@ header {
     text-align: center;
 }
 form {
+    text-align: center;
     width: 20%;
     background-color: #002049; 
     color: white;
-    border-radius: 5px;
-    display: flex;
-    flex-wrap: wrap;
+    border-radius: 20px;
+    flex-wrap: nowrap;
     flex-direction: column;
     padding: 10px;
+    height: 100%;
+    padding-bottom: 3%;
+}
+input{
+    width: 70%;
+}
+input::after{
+    transition: 3s;
+}
+#img-icons {
+    width: 5%;
+
+}
+#columnas-form{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: space-around;
+    height: 40%;
 }
 .login_form{
     padding-top: 5%;
     width: 100%;
     display: flex;
     justify-content: space-around;
+    height: 50%;
 }
 .error_login{
     color: red;
+    margin: 10px;
+    font-size: 12px;
+}
+
+button{
+    color: #e7f5ff;
+    background-color: #002049;
+    padding-left: 7.6%;
+    padding-right: 7.6%;
+    border-radius: 20px; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer; 
+    font-size: 16px; 
+    margin-top: 1rem;
+    transition: 1s;
+}
+button:hover{
+    transition: 1s;
+    background-color: #000000;
+}
+
+.login_forma{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 50%;
 }

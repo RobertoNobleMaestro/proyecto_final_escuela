@@ -1,13 +1,11 @@
 <?php
-$host = 'localhost';
-
-$bdname = 'Escuelas';
+$host = '127.0.0.1';
+$bdname = '';
 $usuari = 'root';
 $contrasenya = '';
 try{
     $conexion = new PDO("mysql:host=$host; dbname=$bdname" , $usuari, $contrasenya);
     echo "Conexión correcta";
-} catch(PDOException $e){
+}catch(PDOException $e){
     echo "El error es:".$e->getMessage();
 }
-?>
