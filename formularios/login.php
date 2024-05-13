@@ -1,3 +1,8 @@
+<?php
+    session_start();
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,25 +19,41 @@
         <img src="../img/logo.png" alt="">
     </header>
     <div class="login_form">
-        <form method="POST" action="../acciones/leer.php">
+        <form method="POST" action="../acciones/validarLogin.php" class="login_estr">
             <h4>Iniciar sesión</h4>
             <div id="columnas-form">
                 <img src="../img/usuario-icono.svg" alt="" id="img-icons">
                 <input type="text" name="usuario" id="usuario" onmouseleave="usuari()">
             </div>
-            <p class="error_login" id="error_user"></p>
+            <p class="error" id="error_user"></p>
             <br>
             <div id="columnas-form">
                 <img src="../img/candado-icono.svg" alt="" id="img-icons">
                 <input type="password" id="password" name="password" onmouseleave="validapasswd()">
             </div>
-            <p class="error_login" id="error_psswd"></p>
+            <p class="error" id="error_psswd"></p>
     </div>
     <div class="login_forma">
-        <button type="submit" value="ENTRAR">Iniciar sesión</button>
+        <button type="submit" value="ENTRAR" class="ov-btn-slide-top">Iniciar sesión</button>
     </div>
         </form>        
 
     <script src="../scripts/validacionEntrada.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <?php
+            if (isset($_SESSION['alerta']) && $_SESSION['alerta'] == 'error'){
+                echo    "<script> 
+                            Swal.fire({
+                                title: 'Vaya...',
+                                text: 'Usuario o contraseña incorrectos',
+                                icon: 'error'
+                            });
+                        </script>";
+            }
+            $_SESSION['alerta'] = 'no';
+
+    ?>
+
 </body>
 </html>

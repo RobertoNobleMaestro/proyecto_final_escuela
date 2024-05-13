@@ -1,6 +1,6 @@
 <?php
 $host = '127.0.0.1';
-$bdname = '';
+$bdname = 'bd_escuela';
 $usuari = 'root';
 $contrasenya = '';
 try{

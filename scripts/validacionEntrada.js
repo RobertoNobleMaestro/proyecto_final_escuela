@@ -1,6 +1,6 @@
 function usuari(){
+    // Recogida por ID de los valores de los imputs del form usuario y error_user
     let user = document.getElementById("usuario").value;
-    // Recogida por ID de los valores de los imputs del form usuario y error_usergetElementById("usuario").value;
     let error_user = document.getElementById("error_user");
 
     if(user == null || user.length == 0 || /^\s+$/.test(user) ){ //Validación para que el campo no sea nulo
