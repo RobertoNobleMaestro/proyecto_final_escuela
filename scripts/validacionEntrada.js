@@ -1,15 +1,22 @@
 function usuari(){
     // Recogida por ID de los valores de los imputs del form usuario y error_user
-    let user = document.getElementById("usuario").value;
+    let user = document.getElementById("usuario");
     let error_user = document.getElementById("error_user");
 
-    if(user == null || user.length == 0 || /^\s+$/.test(user) ){ //Validación para que el campo no sea nulo
+    if(user.value == null || user.value.length == 0 || /^\s+$/.test(user.value) ){ //Validación para que el campo no sea nulo
+        user.classList.add('is-invalid');
         error_user.innerHTML = "El campo no debe estar vacío"; // Mensaje de error si se cumple la condición
-    } else if(!isNaN(user)){ //Validación para que el campo no contenga números
+    } else if(!isNaN(user.value)){ //Validación para que el campo no contenga números
+        user.classList.add('is-invalid');
         error_user.innerHTML = "El campo no debe contener números";// Mensaje de error si se cumple la condición
     } else{ // Si todo es correcto limpio el mensaje de error
+        user.classList.remove('is-invalid');
         error_user.innerHTML= "";
     }
+
+    // nombre.classList.add('is-invalid') // Lo añade a la clase
+    // error_user.classList.remove('is-invalid')
+
 } 
     
 function validapasswd() {

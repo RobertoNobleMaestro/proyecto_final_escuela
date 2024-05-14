@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+// $_SESSION['acceso_index'] = true;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +28,26 @@
                         <h3 class="gestion"> Gestión </h3>
                         <h3 class="gestion"> de la </h3>
                         <h3 class="gestion"> escuela </h3>
-                        <form action="./formularios/login.php">
-                            <button type="submit" name="boton" id="boton">Iniciar sesion</button>
+                        <form method="POST" action="./formularios/login.php">
+                            <button type="submit" name="boton" id="boton" value="1">Iniciar sesion</button>
                         </form>
                 </div>
         </div>   
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php
+        // if(isset($_GET['intruso']) && ($_GET['intruso'] == 1)){
+        //     echo "<script>
+        //             Swal.fire({
+        //             icon: 'error',
+        //             title: 'Error',
+        //             text: 'Haz click en Iniciar sesion'});
+        //         </script>"; 
+        // }
+
+?>
+
 </body>
 </html>
+

@@ -19,17 +19,17 @@
             <h2>Formulario de Inscripción de Alumnos</h2>
                 <div class="campo">
                     <label for="nombre">Nombre del Alumno:</label><br>
-                    <input type="text" id="nombre" name="nombre" onclick="validaNombre()" >
+                    <input type="text" id="nombre" name="nombre" onmouseleave="validaNombre()" >
                     <br>
                     <br>
                     <!-- <p  class="error" id="error_nombre"></p> -->
                     <label for="apellidos">Apellidos del Alumno:</label><br>
-                    <input type="text" id="apellidos" name="apellidos" onclick="validaApellidos()" >
+                    <input type="text" id="apellidos" name="apellidos" onmouseleave="validaApellidos()" >
                     <br>
                     <br>
                     <!-- <p  class="error" id="error_nombre"></p> -->
                     <label for="email">Email del Alumno:</label><br>
-                    <input type="email" id="email" name="email" onclick="validaMail()" ><br><br>
+                    <input type="email" id="email" name="email" onmouseleave="validaMail()" ><br><br>
                     <!-- <p class="error" id="error_email"></p> -->
                 </div>
                 <div class="campo">
@@ -41,22 +41,21 @@
                     </select><br><br>
                     <!-- <p class="error" id="error_sexo"></p> -->
                     <label for="telefono">Teléfono del Alumno:</label><br>
-                    <input type="tel" id="telefono" name="telefono" onclick = "validaTelf()"><br>
+                    <input type="tel" id="telefono" name="telefono" onmouseleave = "validaTelf()"><br>
                     <!-- <p class="error" id="error_telf"></p> -->
                     <br>
-                    
                     <label for="dni">DNI del Alumno:</label><br>
-                    <input type="text" id="dni" name="dni" onclick = "validaDNI()"><br><br>
+                    <input type="text" id="dni" name="dni" onmouseleave = "validaDNI()"><br><br>
                     <!-- <p class="error" id="error_dni"></p> -->
                 </div>
                 <label for="direccion">Dirección del Alumno:</label><br>
-                <input type="text" id="direccion" name="direccion" onclick="validaDireccion()">
+                <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()">
                 <!-- <p class="error" id="error_direccion"></p> -->
                 <p class="error" id="error"></p>   
           
             </form> 
             <div class="login_forma">
-                <button type="submit" id="btn">Crear</button> 
+                <button type="submit">Crear</button> 
                 <a href="../acciones/leer.php"><img src="../img/arrow-left-solid.svg" alt=""></a>
             </div>
             </div>

@@ -92,15 +92,16 @@ button{
     cursor: pointer; 
     font-size: 16px; 
     transition: 1s;
-}
-button:hover{
+} 
+a:hover,button:hover{
     transition: 1s;
     background-color: #000000;
+    border-radius: 40px; 
 }
 
 
 .login_forma{
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -111,10 +112,12 @@ h2 {
     margin-top: 0.5%;
 }
 a {
+    margin-top: 1rem;
     padding: 10px;
     background-color: #002049;
     width: 2%;
     border-radius: 10px;
+    transition: 1s;
 
 }
 .row{

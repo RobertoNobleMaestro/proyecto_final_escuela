@@ -1,8 +1,10 @@
 <?php
-    session_start();
-
+session_start();
 
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,26 +36,15 @@
             <p class="error" id="error_psswd"></p>
     </div>
     <div class="login_forma">
-        <button type="submit" value="ENTRAR" class="ov-btn-slide-top">Iniciar sesión</button>
+        <button type="submit" value="ENTRAR">Iniciar sesión</button>
     </div>
         </form>        
 
     <script src="../scripts/validacionEntrada.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <?php
-            if (isset($_SESSION['alerta']) && $_SESSION['alerta'] == 'error'){
-                echo    "<script> 
-                            Swal.fire({
-                                title: 'Vaya...',
-                                text: 'Usuario o contraseña incorrectos',
-                                icon: 'error'
-                            });
-                        </script>";
-            }
-            $_SESSION['alerta'] = 'no';
+<?php
 
-    ?>
-
+?>
 </body>
 </html>

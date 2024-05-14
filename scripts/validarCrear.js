@@ -68,14 +68,16 @@ function validaTelf(){
     let telf = document.getElementById("telefono").value;
     let error_telf = document.getElementById("error");
     // Validación para que el campo no sea nulo
+    console.log(telf);
     if(telf == null || telf.length == 0 || /^\s+$/.test(telf)){
         error_telf.innerHTML = "El campo no debe estar vacío";
-        // Validación para que cumpla el formato de teléfono adecuado (¡¡PREGUNTAR A ALE PORQUE MUESTRA EL ERROR TODO EL RATO AUNQ EL FORMATO SEA VÁLIDO!!)
-    } else if(!(/^\d{9}$/.test(telf)) || !(/^\d{3}-\d{3}-d{3}-$/.test(telf)) || !(/^\d{3}\s\d{6}$/.test(telf)) || !(/^\d{3}\s\d{2}\s\d{2}\s\d{2}$/.test(telf))){
-        error_telf.innerHTML = "Formato de teléfono no válido";    
+        // Validación para que cumpla el formato de teléfono adecuado 
+    } else if(!(/^\d{9}$/.test(telf))){ 
+        error_telf.innerHTML = "Formato de teléfono no válido, el formato que se espera es 900999999";    
     } else{ // Si todo es correcto mensaje de error se limpia
         error_telf.innerHTML = "";
     }
+    console.log(error_telf);
     
 }
 
