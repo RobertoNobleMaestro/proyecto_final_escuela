@@ -31,11 +31,14 @@ header {
     color: white;
     border-radius: 20px;
     flex-wrap: wrap;
-    height: 55%;
+    height: 65%;
     display: flex;
     align-content: space-around;
     justify-content: center;
 
+}
+#direccion{
+    margin-bottom: 15px;
 }
 input{
     width: 70%;
@@ -45,7 +48,6 @@ input::after{
 }
 #img-icons {
     width: 5%;
-
 }
 #columnas-form{
     display: flex;
@@ -101,7 +103,7 @@ a:hover,button:hover{
 
 
 .login_forma{
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -113,9 +115,9 @@ h2 {
 }
 a {
     margin-top: 1rem;
-    padding: 10px;
+    padding: 12px;
     background-color: #002049;
-    width: 2%;
+    width: 1.5%;
     border-radius: 10px;
     transition: 1s;
 
@@ -127,7 +129,7 @@ a {
 }
 .column-3{
     text-align: center;
-    width: 25%;
+    width: 30%;
     background-color: #002049;
 }
 .column-7{
@@ -136,9 +138,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
-    
-
+    flex-direction: column;
 }
 #logo{
     margin-top: 5%;

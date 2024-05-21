@@ -1,21 +1,29 @@
 <?php
-    session_start();
-    $pwd = $_POST['password'];
+session_start();
+
+$credenciales = [
+    'admin' => 'QAZqaz123',
+    'profe' => 'QAZqaz123'
+];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuario = $_POST['usuario'];
-    if ($_SERVER['REQUEST_METHOD'] != 'POST' || $pwd != 'QAZqaz123' || $usuario != 'admin') {
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['alerta'] = 'error';
-        header("Location: ../formularios/login.php");
-        sweetA();
+    $password = $_POST['password'];
+
+    if (isset($credenciales[$usuario]) && $credenciales[$usuario] === $password) {
+        if ($usuario === 'admin') {
+            // Creo la variable de sesión para admin
+            $_SESSION['role'] = 'admin';
+            header("Location: leer.php");
+        } elseif ($usuario === 'profe') {
+            // Creo la variable de sesión para profe
+            $_SESSION['role'] = 'profe';
+            header("Location: profeLeer.php");
+        }
         exit();
-    } elseif ($_SERVER['REQUEST_METHOD'] != 'POST' || $pwd != 'QAZqaz123' || $usuario != 'profe') {
-        $_SESSION['usuario'] = $usuario;
-        $_SESSION['alerta'] = 'error';
+    } else {
         header("Location: ../formularios/login.php");
-        sweetA();
-        exit();
-    }else{
-        header("./leer.php");
     }
-    
-    
+}
+?>
+

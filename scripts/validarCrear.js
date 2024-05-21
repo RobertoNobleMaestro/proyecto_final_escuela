@@ -40,7 +40,7 @@ function validaMail(){
     // Validación para que el campo no sea nulo
     if(email == null || email.length == 0 || /^\s+$/.test(email)){
         error_email.innerHTML = "El campo 'Email del Alumno' no debe estar vacío";
-    } else if(!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)/.test(email))){ // Validación de un formato de email válido
+    } else if(!(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(email))){ // Validación de un formato de email válido
         error_email.innerHTML = "Formato de email incorrecto";
     } else { // Si todo es correcto mensaje de error se limpia
         error_email.innerHTML = "";

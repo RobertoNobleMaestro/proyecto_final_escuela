@@ -1,10 +1,6 @@
 <?php
 session_start();
-
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,12 +30,11 @@ session_start();
                 <input type="password" id="password" name="password" onmouseleave="validapasswd()">
             </div>
             <p class="error" id="error_psswd"></p>
-    </div>
-    <div class="login_forma">
-        <button type="submit" value="ENTRAR">Iniciar sesión</button>
-    </div>
+            </div>
+            <div class="login_forma">
+                <button type="submit" value="ENTRAR">Iniciar sesión</button>
+            </div>
         </form>        
-
     <script src="../scripts/validacionEntrada.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+     
+    header("Location: ../formularios/login.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,9 +46,9 @@
                 <div class="campo">
                 <label for="sexo">Sexo del Alumno:</label><br>                
                     <select id="sexo" name="sexo" onclick="validaSexo()" >
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option value="otro">Otro</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
                     </select><br><br>
                     <!-- <p class="error" id="error_sexo"></p> -->
                     <label for="telefono">Teléfono del Alumno:</label><br>
@@ -55,7 +66,9 @@
           
             </form> 
             <div class="login_forma">
-                <button type="submit">Crear</button> 
+                <form action="../acciones/crear.php" method="POST">
+                    <button type="submit">Crear</button> 
+                </form>
                 <a href="../acciones/leer.php"><img src="../img/arrow-left-solid.svg" alt=""></a>
             </div>
             </div>

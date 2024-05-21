@@ -102,18 +102,19 @@ h3{
     overflow:auto;
 }
 
-.data-table th, .data-table td {
+.datos-tabla th, .datos-tabla td {
     padding: 10px;
     text-align: center;
 }
 
-.data-table th {
+.data-tabla th {
     background-color: #f2f2f2;
 }
 .titulos{
-    position: sticky;
+    text-align: center;
+
 }
-.editar, .eliminar {
+.editar, .eliminar,.crear-btn, .btn-session {
     background-color: #002049;
     padding: 10px;
     color: white;
@@ -127,7 +128,7 @@ h3{
     border: none;
 }
 
-.editar:hover, .eliminar:hover {
+.editar:hover, .eliminar:hover,.crear-btn:hover, .btn-session:hover {
     text-decoration: underline;
 }
 

@@ -1,11 +1,13 @@
 <?php
+
 session_start();
-// session_start();
-// if (!isset($_SESSION['loginOK']) || $_SESSION['loginOK'] !== true) {
-//     header("Location: login.php");
-//     exit();
-// } 
-$usuario = $_SESSION['usuario'];
+
+// compruebo si existe el rol de admin, sino envio a login.php
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+    
+    header("Location: ../formularios/login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +31,7 @@ $usuario = $_SESSION['usuario'];
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle enlace-barra" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Órden alfabético</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">A-Z</a></li>
+                    <li><a class="dropdown-item" href="./consulta.php">A-Z</a></li>
                     <li><a class="dropdown-item" href="#">Z-A</a></li>
                 </ul>
                 </li>
@@ -68,10 +70,10 @@ $usuario = $_SESSION['usuario'];
 <?php
 require_once '../conexion.php';
 
-$consulta = $conexion->prepare('
-    SELECT 
-        matricula_alumno, 
-        nombre_alumno, 
+$consulta = $conexion->prepare("
+    SELECT  
+        matricula_alumno,
+        nombre_alumno,
         apellido_alumno, 
         email_alumno, 
         telefono_alumno, 
@@ -84,51 +86,44 @@ $consulta = $conexion->prepare('
         tbl_cursos 
     ON 
         fk_id_curso = fk_id_curso_alu
-    ORDER BY 
-        matricula_alumno;
-');
-
+");
 $consulta->execute();
 $resultados = $consulta->fetchAll();
-    if($usuario = 'admin'){
+
         echo '<form action="../formularios/form-crear.php">
                 <button class="crear-btn" type="submit">Crear</button>
                 <h1>Alumnos</h1>
             </form>';
-    }
+    
 echo '<table class="data-table">';
 echo '<thead class="titulos">';
 echo '<tr>';
-
 for ($i = 0; $i < $consulta->columnCount(); $i++) {
     $columna = $consulta->getColumnMeta($i);
     echo "<th>" . $columna["name"] . "</th>";
 }
-
 echo '<th>Acciones</th>';
 echo '</tr>';
 echo '</thead>';
 echo '<tbody>';
-
 foreach ($resultados as $columna) {
     echo "<tr>";
     for ($i = 0; $i < $consulta->columnCount(); $i++) {
         echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
     }
-    if()
     echo "<td class='botones-leer'>
-            <a class='editar' href='../formularios/form-editar.php?ID=".$columna['matricula_alumno'] . "'>Editar</a>
-            <a class='eliminar'  href='./acciones/eliminar.php?ID=".$columna['matricula_alumno'] . "'>Eliminar</a>
+            <a class='editar' href='../formularios/form-editar.php?Alumn=".$columna['matricula_alumno'] . "'>Editar</a>
+            <a class='eliminar'href='eliminar.php?Alumn=".$columna['matricula_alumno'] . "'>Eliminar</a>
           </td>";
     echo "</tr>";
 }
-
 echo '</tbody>';
 echo '</table>';    
 ?>
-<form action="./leerprofes.php"><button type="submit">Ver profesores</button></form>
+<div>
+    <form method="POST" action=" leerprofes.php"><button type="submit" class="btn-session" >Ver profesores</button></form>
+    <form method="POST" action="../acciones/cerrarSesionProfe.php"><button type="submit" class="btn-session">Cerrar Sesion</button></form>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-    
 </body>
 </html>

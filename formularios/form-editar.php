@@ -1,3 +1,28 @@
+<?php
+
+session_start();
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+     
+    header("Location: ../formularios/login.php");
+    exit();
+}
+if (isset($_GET['Alumn'])) {
+    $ID = $_GET['Alumn'];
+    require_once('../conexion.php');
+    $consulta = $conexion->prepare('SELECT * FROM tbl_alumnos WHERE matricula_alumno = :ID');
+    $consulta->bindParam(':ID', $ID);
+    $consulta->execute();
+    $resultados = $consulta->fetch();
+    if (!$resultados) {
+        echo "Error ID.";
+        exit();
+    }
+} else {
+    echo "ID no proporcionado.";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,41 +43,48 @@
             <form action="../acciones/editar.php" method="POST" class="form-estr">
             <h2>Formulario de Inscripción de Alumnos</h2>
                 <div class="campo">
+                <label for="matricula">Matricula del Alumno:</label><br>
+                    <input type="text" id="matricula" name="matricula" value="<?php echo $ID; ?>" onmouseleave="validaNombre()" readonly> <br><br>                   
                     <label for="nombre">Nombre del Alumno:</label><br>
-                    <input type="text" id="nombre" name="nombre" onmouseleave="validaNombre()" >
+                    <input type="text" id="nombre" name="nombre" value="<?php echo $resultados['nombre_alumno']; ?>" onmouseleave="validaNombre()" >
                     <br>
                     <br>
-                    <!-- <p  class="error" id="error_nombre"></p> -->
                     <label for="apellidos">Apellidos del Alumno:</label><br>
-                    <input type="text" id="apellidos" name="apellidos" onmouseleave="validaApellidos()" >
+                    <input type="text" id="apellidos" name="apellidos"  value="<?php echo $resultados['apellido_alumno']; ?>" onmouseleave="validaApellidos()" >
                     <br>
                     <br>
-                    <!-- <p  class="error" id="error_nombre"></p> -->
                     <label for="email">Email del Alumno:</label><br>
-                    <input type="email" id="email" name="email" onmouseleave="validaMail()" ><br><br>
-                    <!-- <p class="error" id="error_email"></p> -->
+                    <input type="email" id="email" name="email"  value="<?php echo $resultados['email_alumno']; ?>"onmouseleave="validaMail()" ><br><br>
                 </div>
                 <div class="campo">
                 <label for="sexo">Sexo del Alumno:</label><br>                
-                    <select id="sexo" name="sexo" onclick="validaSexo()" >
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option value="otro">Otro</option>
+                    <select id="sexo" name="sexo" onclick="validaSexo()">
+                        <option value="masculino" <?php echo ($resultados['sexo_alumno'] == "Masculino") ? ' selected="selected"' : '';?>>Masculino</option>
+                        <option value="femenino" <?php echo ($resultados['sexo_alumno'] == "Femenino") ? ' selected="selected"' : '';?>>Femenino</option>
+                        <option value="otro" <?php echo ($resultados['sexo_alumno'] == "Otro") ? ' selected="selected"' : '';?>>Otro</option>
                     </select><br><br>
-                    <!-- <p class="error" id="error_sexo"></p> -->
                     <label for="telefono">Teléfono del Alumno:</label><br>
-                    <input type="tel" id="telefono" name="telefono" onmouseleave = "validaTelf()"><br>
-                    <!-- <p class="error" id="error_telf"></p> -->
+                    <input type="tel" id="telefono" name="telefono" onmouseleave = "validaTelf()" value="<?php echo $resultados['telefono_alumno']; ?>"><br>
                     <br>
                     <label for="dni">DNI del Alumno:</label><br>
-                    <input type="text" id="dni" name="dni" onmouseleave = "validaDNI()"><br><br>
-                    <!-- <p class="error" id="error_dni"></p> -->
-                </div>
-                <label for="direccion">Dirección del Alumno:</label><br>
-                <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()">
-                <!-- <p class="error" id="error_direccion"></p> -->
+                    <input type="text" id="dni" name="dni" onmouseleave = "validaDNI()" value="<?php echo $resultados['DNI_alumno']; ?>"><br><br>
+                    <label for="curso">Curso del Alumno:</label><br>               
+                    <select id="curso" name="curso" onclick="validaSexo()">
+                        <option value="1">1º Bachillerato Social</option>
+                        <option value="2">2º Bachillerato Social</option>
+                        <option value="3">1º Bachillerato Cientifico</option>
+                        <option value="4">2º Bachillerato Cientifico</option>
+                        <option value="5">SMX1</option>
+                        <option value="6">SMX2</option>
+                        <option value="7">ASIX1</option>
+                        <option value="8">ASIX2</option>
+                        <option value="9">DAW2</option>
+                    </select>
+                 </div>
+                <label for="direccion">Dirección del Alumno:</label>
+                <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()" value="<?php echo  $resultados['direccion_alumno']; ?>">
                 <p class="error" id="error"></p>   
-          
+
             </form> 
             <div class="login_forma">
                 <button type="submit">Editar</button> 

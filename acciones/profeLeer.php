@@ -2,23 +2,25 @@
 
 session_start();
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    
+// compruebo si existe el rol de profe, sino envio a login.php
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'profe') {
     header("Location: ../formularios/login.php");
     exit();
 }
 
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg barra">
+    <nav class="navbar navbar-expand-lg barra">
          <div class="container-fluid">
          <a class="navbar-brand" href="#"><img src="../img/logo.png" alt=""></a> 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,47 +67,50 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             </div>
         </div>
     </nav>
-    <?php 
-        echo '<form action="../formularios/form-crear.php">
-            <button class="crear-btn" type="submit">Crear</button>
-            <h1>Profesores</h1>
-        </form>';
-        require_once '../conexion.php';
-        $consulta = $conexion->prepare('
-            SELECT 
-            *     
-            FROM 
-                tbl_profesores 
-            ');
-            $consulta->execute();
-            $resultados = $consulta->fetchAll();
-            echo '<table class="datos-tabla">';
-            echo '<thead>';
-            echo '<tr>';
-            for ($i = 0; $i < $consulta->columnCount(); $i++) {
-                $columna = $consulta->getColumnMeta($i);
-                echo "<th>" . $columna["name"] . "</th>";
-            }
-            echo '<th>Acciones</th>';
-            echo '</tr>';
-            echo '</thead>';
-            echo '<tbody>';
-            foreach ($resultados as $columna) {
-                echo "<tr>";
-            for ($i = 0; $i < $consulta->columnCount(); $i++) {
-                echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
-            }
-            echo "<td class='botones-leer'>
-                <a class='editar' href='../formularios/form-editar.php?Profes=" . $columna['id_profe'] . "'>Editar</a>
-                <a class='eliminar' href='eliminar.php?Profes=" . $columna['id_profe'] . "'>Eliminar</a>
-                </td>";
-            echo "</tr>";
-            }
-            echo '</tbody>';
-            echo '</table>';    
-        ?>  
-<form action="../acciones/leer.php"><button type="submit">Ver alumnos</button></form>
-<form method="POST" action="../acciones/cerrarSesionProfe.php"><button type="submit">Cerrar Sesion</button></form>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
+<?php
+require_once '../conexion.php';
+
+$consulta = $conexion->prepare('
+    SELECT 
+        nombre_alumno, 
+        apellido_alumno, 
+        email_alumno, 
+        telefono_alumno, 
+        DNI_alumno, 
+        direccion_alumno, 
+        nombre_curso 
+    FROM 
+        tbl_alumnos 
+    INNER JOIN 
+        tbl_cursos 
+    ON 
+        fk_id_curso = fk_id_curso_alu
+    ORDER BY 
+        matricula_alumno;
+');
+
+$consulta->execute();
+$resultados = $consulta->fetchAll();
+echo '<table class="data-table">';
+echo '<thead class="titulos">';
+echo '<tr>';
+
+for ($i = 0; $i < $consulta->columnCount(); $i++) {
+    $columna = $consulta->getColumnMeta($i);
+    echo "<th>" . $columna["name"] . "</th>";
+}
+
+foreach ($resultados as $columna) {
+    echo "<tr>";
+    for ($i = 0; $i < $consulta->columnCount(); $i++) {
+        echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
+    }
+}
+
+echo '</tbody>';
+echo '</table>';    
+?>
+<form method="POST" action="../acciones/cerrarSesionProfe.php"><button type="submit" class="btn-session">Cerrar Sesion</button></form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
