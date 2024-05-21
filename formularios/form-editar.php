@@ -84,10 +84,9 @@ if (isset($_GET['Alumn'])) {
                 <label for="direccion">Dirección del Alumno:</label>
                 <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()" value="<?php echo  $resultados['direccion_alumno']; ?>">
                 <p class="error" id="error"></p>   
-
+                <button type="submit">Editar</button> 
             </form> 
             <div class="login_forma">
-                <button type="submit">Editar</button> 
                 <a href="../acciones/leer.php"><img src="../img/arrow-left-solid.svg" alt=""></a>
             </div>
             </div>
