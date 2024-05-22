@@ -84,7 +84,7 @@ $consulta = $conexion->prepare('
     INNER JOIN 
         tbl_cursos 
     ON 
-        fk_id_curso = fk_id_curso_alu
+        id_curso = fk_id_curso_alu
     ORDER BY 
         matricula_alumno;
 ');
@@ -94,12 +94,15 @@ $resultados = $consulta->fetchAll();
 echo '<table class="data-table">';
 echo '<thead class="titulos">';
 echo '<tr>';
-
-for ($i = 0; $i < $consulta->columnCount(); $i++) {
-    $columna = $consulta->getColumnMeta($i);
-    echo "<th>" . $columna["name"] . "</th>";
-}
-
+    echo "<th>Nombre</th>";
+    echo "<th>Apellido</th>";
+    echo "<th>email</th>";
+    echo "<th>Teléfono</th>";
+    echo "<th>DNI</th>";
+    echo "<th>Dirección</th>";
+    echo "<th>Curso</th>";
+    echo "</tr>";
+echo "<tbody>";
 foreach ($resultados as $columna) {
     echo "<tr>";
     for ($i = 0; $i < $consulta->columnCount(); $i++) {

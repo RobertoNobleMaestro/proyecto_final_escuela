@@ -16,7 +16,7 @@ session_start();
     <header>
         <img src="../img/logo.png" alt="">
     </header>
-    <div class="login_form">
+    <div id="login_form">
         <form method="POST" action="../acciones/validarLogin.php" class="login_estr">
             <h4>Iniciar sesión</h4>
             <div id="columnas-form">
@@ -31,7 +31,7 @@ session_start();
             </div>
             <p class="error" id="error_psswd"></p>
             </div>
-            <div class="login_forma">
+            <div id="login_forma">
                 <button type="submit" value="ENTRAR">Iniciar sesión</button>
             </div>
         </form>        

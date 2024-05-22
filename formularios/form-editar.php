@@ -58,33 +58,34 @@ if (isset($_GET['Alumn'])) {
                 </div>
                 <div class="campo">
                 <label for="sexo">Sexo del Alumno:</label><br>                
-                    <select id="sexo" name="sexo" onclick="validaSexo()">
-                        <option value="masculino" <?php echo ($resultados['sexo_alumno'] == "Masculino") ? ' selected="selected"' : '';?>>Masculino</option>
-                        <option value="femenino" <?php echo ($resultados['sexo_alumno'] == "Femenino") ? ' selected="selected"' : '';?>>Femenino</option>
-                        <option value="otro" <?php echo ($resultados['sexo_alumno'] == "Otro") ? ' selected="selected"' : '';?>>Otro</option>
-                    </select><br><br>
+                <select id="sexo" name="sexo" onclick="validaSexo()">
+                    <option value="masculino" <?php echo ($resultados['sexo_alumno'] == "Masculino") ? ' selected="selected"' : '';?>>Masculino</option>
+                    <option value="femenino" <?php echo ($resultados['sexo_alumno'] == "Femenino") ? ' selected="selected"' : '';?>>Femenino</option>
+                    <option value="otro" <?php echo ($resultados['sexo_alumno'] == "Otro") ? ' selected="selected"' : '';?>>Otro</option>
+                </select><br><br>
                     <label for="telefono">Teléfono del Alumno:</label><br>
                     <input type="tel" id="telefono" name="telefono" onmouseleave = "validaTelf()" value="<?php echo $resultados['telefono_alumno']; ?>"><br>
                     <br>
                     <label for="dni">DNI del Alumno:</label><br>
                     <input type="text" id="dni" name="dni" onmouseleave = "validaDNI()" value="<?php echo $resultados['DNI_alumno']; ?>"><br><br>
                     <label for="curso">Curso del Alumno:</label><br>               
-                    <select id="curso" name="curso" onclick="validaSexo()">
-                        <option value="1">1º Bachillerato Social</option>
-                        <option value="2">2º Bachillerato Social</option>
-                        <option value="3">1º Bachillerato Cientifico</option>
-                        <option value="4">2º Bachillerato Cientifico</option>
-                        <option value="5">SMX1</option>
-                        <option value="6">SMX2</option>
-                        <option value="7">ASIX1</option>
-                        <option value="8">ASIX2</option>
-                        <option value="9">DAW2</option>
-                    </select>
-                 </div>
+                <select id="curso" name="curso">
+                    <option value="1" <?php echo ($resultados['fk_id_curso_alu'] == "1") ? ' selected="selected"' : '';?>>1º Bachillerato Social</option>
+                    <option value="2" <?php echo ($resultados['fk_id_curso_alu'] == "2") ? ' selected="selected"' : '';?>>2º Bachillerato Social</option>
+                    <option value="3" <?php echo ($resultados['fk_id_curso_alu'] == "3") ? ' selected="selected"' : '';?>>1º Bachillerato Cientifico</option>
+                    <option value="4" <?php echo ($resultados['fk_id_curso_alu'] == "4") ? ' selected="selected"' : '';?>>2º Bachillerato Cientifico</option>
+                    <option value="5" <?php echo ($resultados['fk_id_curso_alu'] == "5") ? ' selected="selected"' : '';?>>SMX1</option>
+                    <option value="6" <?php echo ($resultados['fk_id_curso_alu'] == "6") ? ' selected="selected"' : '';?>>SMX2</option>
+                    <option value="7" <?php echo ($resultados['fk_id_curso_alu'] == "7") ? ' selected="selected"' : '';?>>ASIX1</option>
+                    <option value="8" <?php echo ($resultados['fk_id_curso_alu'] == "8") ? ' selected="selected"' : '';?>>ASIX2</option>
+                    <option value="9" <?php echo ($resultados['fk_id_curso_alu'] == "9") ? ' selected="selected"' : '';?>>DAW1</option>
+                    <option value="10" <?php echo ($resultados['fk_id_curso_alu'] == "10") ? ' selected="selected"' : '';?>>DAW2</option>
+                </select>
+                </div>
                 <label for="direccion">Dirección del Alumno:</label>
                 <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()" value="<?php echo  $resultados['direccion_alumno']; ?>">
-                <p class="error" id="error"></p>   
                 <button type="submit">Editar</button> 
+                <p class="error" id="error"></p>   
             </form> 
             <div class="login_forma">
                 <a href="../acciones/leer.php"><img src="../img/arrow-left-solid.svg" alt=""></a>

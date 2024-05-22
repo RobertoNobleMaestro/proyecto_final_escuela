@@ -2,12 +2,11 @@
 
 session_start();
 
-// compruebo si existe el rol de admin, sino envio a login.php
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     
     header("Location: ../formularios/login.php");
     exit();
-}
+} 
 ?>
 
 <!DOCTYPE html>
@@ -20,9 +19,18 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <title>Document</title>
 </head>
 <body>
+    <?php
+        require_once '../conexion.php';
+        $consulta_total = $conexion->prepare("
+            SELECT count(*)
+            FROM tbl_alumnos;
+        ");
+        $consulta_total->execute();
+        $total_alu = $consulta_total->fetchall();
+        ?>
     <nav class="navbar navbar-expand-lg barra">
          <div class="container-fluid">
-         <a class="navbar-brand" href="#"><img src="../img/logo.png" alt=""></a> 
+         <a class="navbar-brand" href="leer.php"><img src="../img/logo.png" alt=""></a> 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,32 +39,32 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle enlace-barra" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Órden alfabético</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="./consulta.php">A-Z</a></li>
-                    <li><a class="dropdown-item" href="#">Z-A</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=asc">A-Z</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=desc">Z-A</a></li>
                 </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Sexo</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Masculino</a></li>
-                    <li><a class="dropdown-item" href="#">Femenino</a></li>
+                    <li><a class="dropdown-item"  href="leer.php?orden=Masculino">Masculino</a></li>
+                    <li><a class="dropdown-item"  href="leer.php?orden=Femenino">Femenino</a></li>
+                    <li><a class="dropdown-item"  href="leer.php?orden=Otro">Otro</a></li>
                 </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Curso</a>
                 <ul class="dropdown-menu">
                 </li>
-                    <li><a class="dropdown-item" href="#">1º Bachilletato Social</a></li>
-                    <li><a class="dropdown-item" href="#">1º Bachilletato Tecnológico</a></li>
-                    <li><a class="dropdown-item" href="#">1º Bachilletato Científico</a></li>
-                    <li><a class="dropdown-item" href="#">2º Bachilletato Social</a></li>
-                    <li><a class="dropdown-item" href="#">2º Bachilletato Tecnológico</a></li>
-                    <li><a class="dropdown-item" href="#">2º Bachilletato Científico</a></li>
-                    <li><a class="dropdown-item" href="#">1º SMX</a></li>
-                    <li><a class="dropdown-item" href="#">2º SMX</a></li>
-                    <li><a class="dropdown-item" href="#">1º ASIX</a></li>
-                    <li><a class="dropdown-item" href="#">2º ASIX</a></li>
-                    <li><a class="dropdown-item" href="#">2º DAW</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=1">1º Bachilletato Social</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=3">1º Bachilletato Científico</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=2">2º Bachilletato Social</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=4">2º Bachilletato Científico</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=5">1º SMX</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=6">2º SMX</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=7">1º ASIX</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=8">2º ASIX</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=9">1º DAW</a></li>
+                    <li><a class="dropdown-item" href="leer.php?orden=10">2º DAW</a></li>
                 </ul>
                 </li>
                 </ul>
@@ -68,42 +76,26 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         </div>
     </nav>
 <?php
-require_once '../conexion.php';
-
-$consulta = $conexion->prepare("
-    SELECT  
-        matricula_alumno,
-        nombre_alumno,
-        apellido_alumno, 
-        email_alumno, 
-        telefono_alumno, 
-        DNI_alumno, 
-        direccion_alumno, 
-        nombre_curso 
-    FROM 
-        tbl_alumnos 
-    INNER JOIN 
-        tbl_cursos 
-    ON 
-        fk_id_curso = fk_id_curso_alu
-");
-$consulta->execute();
-$resultados = $consulta->fetchAll();
-
-        echo '<form action="../formularios/form-crear.php">
-                <button class="crear-btn" type="submit">Crear</button>
-                <h1>Alumnos</h1>
-            </form>';
-    
-echo '<table class="data-table">';
-echo '<thead class="titulos">';
-echo '<tr>';
-for ($i = 0; $i < $consulta->columnCount(); $i++) {
-    $columna = $consulta->getColumnMeta($i);
-    echo "<th>" . $columna["name"] . "</th>";
-}
-echo '<th>Acciones</th>';
-echo '</tr>';
+require_once 'consulta.php';
+echo '<form action="../formularios/form-crear.php">
+        <button class="crear-btn" type="submit">Crear</button>';
+echo    '<div>
+        </div>
+        <h1>Alumnos</h1>
+    </form>'; 
+echo '<table>';
+echo '<theadclass="titulos">';
+echo '<tr class="thead-dark">';
+    echo "<th>Matrícula</th>";
+    echo "<th>Nombre</th>";
+    echo "<th>Apellido</th>";
+    echo "<th>email</th>";
+    echo "<th>Teléfono</th>";
+    echo "<th>DNI</th>";
+    echo "<th>Dirección</th>";
+    echo "<th>Curso</th>";
+    echo '<th>Acciones</th>';
+    echo "</tr>";
 echo '</thead>';
 echo '<tbody>';
 foreach ($resultados as $columna) {
@@ -118,12 +110,21 @@ foreach ($resultados as $columna) {
     echo "</tr>";
 }
 echo '</tbody>';
+foreach($total_alu as $total_alumnos){
+    foreach($total_alumnos as $alumnos){
+        ;
+    }
+}
 echo '</table>';    
 ?>
-<div>
+
+
+<div >
     <form method="POST" action=" leerprofes.php"><button type="submit" class="btn-session" >Ver profesores</button></form>
     <form method="POST" action="../acciones/cerrarSesionProfe.php"><button type="submit" class="btn-session">Cerrar Sesion</button></form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

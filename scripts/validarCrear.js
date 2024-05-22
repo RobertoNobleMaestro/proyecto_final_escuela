@@ -128,3 +128,18 @@ function validaDireccion(){
         error_direccion.innerHTML = "";
     }
 }
+
+//Validación de los Cursos
+
+function validaCurso{
+    let indice = document.getElementById("curso").selectedIndex;
+    let error_curso = document.getElementById("error_curso");
+    // Validación para que el índice de la lista no sea 0
+    if(indice == null || indice == 0){
+        error_curso.innerHTML = "El índice de la lista 'Curso del Alumno' no puede estar vacío" ;
+    } else if(indice == null || indice == 0 || /^\s+$/.test(indice)){ // Validación para que el campo no esté vacío
+        error_curso.innerHTML = "El campo 'Curso del Alumno' no puede estar vacío";
+    } else { // Si todo es correcto mensaje de error se limpia
+        error_curso.innerHTML = "";
+    }
+}

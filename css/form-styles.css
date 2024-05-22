@@ -21,27 +21,26 @@ header {
     flex-wrap: nowrap;
     flex-direction: column;
     padding: 10px;
-    height: 100%;
     padding-bottom: 3%;
 }
 .form-estr {
     text-align: center;
-    width: 50%;
+    width: 45%;
     background-color: #002049; 
     color: white;
     border-radius: 20px;
     flex-wrap: wrap;
-    height: 65%;
     display: flex;
-    align-content: space-around;
     justify-content: center;
-
+    align-items: center;
+    padding: 20px;
 }
+
 #direccion{
     margin-bottom: 15px;
 }
-input{
-    width: 70%;
+input,select{
+    width: 80%;
 }
 input::after{
     transition: 3s;
@@ -49,14 +48,7 @@ input::after{
 #img-icons {
     width: 5%;
 }
-#columnas-form{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
-    justify-content: space-around;
-    height: 40%;
-}
+
 .login_form{
     padding-top: 5%;
     width: 100%;
@@ -147,4 +139,34 @@ a {
 
 .campo {
     width: 50%; 
+    height: 60%;
+    text-align: center;
+}
+.campo1 {
+    width: 50%; 
+    text-align: center;
+}
+.direccion{
+    padding-top: 30px;
+}
+
+/* login */
+
+#columnas-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
+}
+
+#img-icons {
+    margin-right: 10px; 
+}
+
+.error {
+    color: red; 
+    font-size: 12px;
+    margin-top: -10px; 
+}
+#login-form{
+    
 }

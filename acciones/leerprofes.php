@@ -1,15 +1,10 @@
 <?php
-
 session_start();
-
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') { 
     header("Location: ../formularios/login.php");
     exit();
 }
-
 ?>
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,7 +61,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         </div>
     </nav>
     <?php 
-        echo '<form action="../formularios/form-crear.php">
+        echo '<form action="../formularios/form-crearprofe.php">
             <button class="crear-btn" type="submit">Crear</button>
             <h1>Profesores</h1>
         </form>';
@@ -81,13 +76,21 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             $resultados = $consulta->fetchAll();
             echo '<table class="datos-tabla">';
             echo '<thead>';
-            echo '<tr>';
-            for ($i = 0; $i < $consulta->columnCount(); $i++) {
-                $columna = $consulta->getColumnMeta($i);
-                echo "<th>" . $columna["name"] . "</th>";
-            }
-            echo '<th>Acciones</th>';
-            echo '</tr>';
+                echo '<tr class="thead-dark">';
+                    echo "<th>Matrícula</th>";
+                    echo "<th>Nombre</th>";
+                    echo "<th>Apellido</th>";
+                    echo "<th>email</th>";
+                    echo "<th>Salario</th>";
+                    echo "<th>Sexo</th>";
+                    echo "<th>Telefono</th>";
+                    echo "<th>DNI</th>";
+                    echo '<th>Dirección</th>';
+                    echo "<th>Fecha de contratación</th>";
+                    echo "<th>Fecha de nacimiento</th>";
+                    echo "<th>Acciones</th>";
+                echo "</tr>";
+            echo '</thead>';
             echo '</thead>';
             echo '<tbody>';
             foreach ($resultados as $columna) {
@@ -96,7 +99,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
             }
             echo "<td class='botones-leer'>
-                <a class='editar' href='../formularios/form-editar.php?Profes=" . $columna['id_profe'] . "'>Editar</a>
+                <a class='editar' href='../formularios/form-editar-profe.php?Profes=" . $columna['id_profe'] . "'>Editar</a>
                 <a class='eliminar' href='eliminar.php?Profes=" . $columna['id_profe'] . "'>Eliminar</a>
                 </td>";
             echo "</tr>";
@@ -104,8 +107,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             echo '</tbody>';
             echo '</table>';    
         ?>  
-<form action="../acciones/leer.php"><button type="submit">Ver alumnos</button></form>
-<form method="POST" action="../acciones/cerrarSesionProfe.php"><button type="submit">Cerrar Sesion</button></form>
+<form action="../acciones/leer.php"><button type="submit" class="btn-session">Ver alumnos</button></form>
+<form method="POST" action="../acciones/cerrarSesionProfe.php"><button type="submit" class="btn-session">Cerrar Sesion</button></form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>   
 </body>
 </html>

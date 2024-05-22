@@ -95,18 +95,27 @@ h3{
     margin-top: 0%;
     margin-bottom: 0%;
 }
+table{
+    width: 100% !important;
+}
 .datos-tabla {
-    width: 100%;
     border-collapse: collapse;
     display: inline-block;
     overflow:auto;
-}
-
-.datos-tabla th, .datos-tabla td {
-    padding: 10px;
     text-align: center;
 }
-
+th,td{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+.datos-tabla th, .datos-tabla td {
+    text-align: center;
+}
+.thead-dark{
+    background-color: #002049 !important;
+    color: white !important;
+    text-align: center;
+}
 .data-tabla th {
     background-color: #f2f2f2;
 }
