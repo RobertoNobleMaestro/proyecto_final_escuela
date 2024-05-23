@@ -1,11 +1,11 @@
-<!-- <?php 
-// session_start();
-// if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+<?php 
+ session_start();
+ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
      
-//     header("Location: ../formularios/login.php");
-//     exit();
-// }
-?>-->
+     header("Location: ../formularios/login.php");
+    exit();
+ }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,21 +26,19 @@
             <form action="../acciones/crearprofe.php" method="POST" class="form-estr">
             <h2>Formulario de Inscripción de Profesor</h2>
                 <div class="campo">
-                    <label for="nombre">Nombre del Profesor:</label><br>
-                    <input type="text" id="nombre" name="nombre" onmouseleave="validaNombre()" >
-                    <br>
-                    <br>
-                    <label for="apellidos">Apellidos del Profesor:</label><br>
-                    <input type="text" id="apellidos" name="apellidos" onmouseleave="validaApellidos()" >
-                    <br>
-                    <br>
-                    <label for="salario">Salario del profesor:</label><br>
-                    <input type="text" id="salario" name="salario" onmouseleave = "validasalario()">
-                    <br>
-                    <br>
-                    <label for="email">Email del Profesor:</label><br>
-                    <input type="email" id="email" name="email" onmouseleave="validaMail()" ><br><br>
-                    <label for="curso"> Curso del Profesor:</label><br>   
+                    <label for="nombre">Nombre del Profesor:</label>
+                    <input type="text" id="nombre" name="nombre" onmouseleave="validaNombre()"><br><br>
+                    <p class="error" id="error_nombre"></p>
+                    <label for="apellidos">Apellidos del Profesor:</label>
+                    <input type="text" id="apellidos" name="apellidos" onmouseleave="validaApellidos()"><br><br>
+                    <p class="error" id="error_apellidos"></p>
+                    <label for="salario">Salario del profesor:</label>
+                    <input type="text" id="salario" name="salario" onmouseleave = "validasalario()"><br><br>
+                    <p class="error" id="error_salario"></p>
+                    <label for="email">Email del Profesor:</label>
+                    <input type="email" id="email" name="email" onmouseleave="validaMail()"><br><br>
+                    <p class="error" id="error_email"></p>
+                    <label for="curso"> Curso del Profesor:</label>  
                     <select id="curso" name="curso" onclick="validaCurso()">
                         <option value="1">1º Bachillerato Social</option>
                         <option value="2">2º Bachillerato Social</option>
@@ -52,29 +50,34 @@
                         <option value="8">ASIX2</option>
                         <option value="9">DAW1</option>
                         <option value="10">DAW2</option>
-                </select>
+                </select><br><br>
+                <p class="error" id="error_curso"></p> 
                 </div>
                 <div class="campo">
-                <label for="sexo">Sexo del Profesor:</label><br>                
-                    <select id="sexo" name="sexo" onclick="validaSexo()" >
+                <label for="sexo">Sexo del Profesor:</label>                
+                    <select id="sexo" name="sexo" onclick="validaSexo()">
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                         <option value="Otro">Otro</option>
                     </select><br><br>
-                    <label for="telefono">Teléfono del Profesor:</label><br>
+                    <p class="error" id="error_sexo"></p>
+                    <label for="telefono">Teléfono del Profesor:</label>
                     <input type="tel" id="telefono" name="telefono" onmouseleave = "validaTelf()"><br>
                     <br>
-                    <label for="dni">DNI del Profesor:</label><br>
+                    <p class="error" id="error_telf"></p>
+                    <label for="dni">DNI del Profesor:</label>
                     <input type="text" id="dni" name="dni" onmouseleave = "validaDNI()"><br><br>
-                    <label for="contrato">Fecha de contratación:</label><br>
-                    <input type="contrato" id="contrato" name="contrato" onmouseleave="validaMail()"> <br><br>
-                    <label for="nacimiento">Fecha de nacimiento:</label><br>
-                    <input type="nacimiento" id="nacimiento" name="nacimiento" onmouseleave="validaMail()">
+                    <p class="error" id="error_dni"></p>
+                    <label for="contrato">Fecha de contratación:</label>
+                    <input type="date" id="contrato" name="contrato" onmouseleave="validacontra()"> <br><br>
+                    <p class="error" id="error_contrato"></p>
+                    <label for="nacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="nacimiento" name="nacimiento" onmouseleave="validanacimiento()"><br><br>
+                    <p class="error" id="error_nacimiento"></p>
                 </div>
-                <label for="direccion" class="direccion">Dirección del Profesor:</label><br>
-                    <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()">
-                <!-- <p class="error" id="error"></p>  
-                <p class="error" id="error_curso"></p> -->
+                <label for="direccion" class="direccion">Dirección del Profesor:</label>
+                    <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()"><br><br>
+                    <p class="error" id="error_dir"></p>
                 <button type="submit">Crear</button> 
             </form> 
             <div class="login_forma">
@@ -82,7 +85,6 @@
             </div>
             </div>
         </div>  
-    <!-- Link a archivo javascript-->
     <script src="../scripts/validarCrear.js"></script>
 </body>
 </html>

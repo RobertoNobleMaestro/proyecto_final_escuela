@@ -68,7 +68,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 </ul>
                 </li>
                 </ul>
-                <form class="d-flex" role="search" method="get" action="filtrar.php">
+                <form class="d-flex" role="search" method="get" action="8.php">
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
@@ -94,33 +94,38 @@ echo        '</div>
         <h1>Total Alumnos: '.$verTotal.'</h1>
     </form>'; 
 echo '<table class="datos-tabla">';
-echo '<theadclass="titulos">';
+echo '<thead class="titulos">';
 echo '<tr class="thead-dark">';
     echo "<th>Matrícula</th>";
     echo "<th>Nombre</th>";
     echo "<th>Apellido</th>";
-    echo "<th>email</th>";
+    echo "<th>Email</th>";
     echo "<th>Teléfono</th>";
     echo "<th>DNI</th>";
     echo "<th>Dirección</th>";
     echo "<th>Curso</th>";
-    echo '<th>Acciones</th>';
-    echo "</tr>";
+    echo "<th>Acciones</th>";
+echo "</tr>";
 echo '</thead>';
 echo '<tbody>';
 foreach ($resultados as $columna) {
     echo "<tr class='bordes'>";
-    for ($i = 0; $i < $consulta->columnCount(); $i++) {
-        echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
-    } 
-    echo "<td class='botones-leer'>
-            <a class='editar' href='../formularios/form-editar.php?Alumn=".$columna['matricula_alumno'] . "'>Editar</a>
-            <a class='eliminar'href='eliminar.php?Alumn=".$columna['matricula_alumno'] . "'>Eliminar</a>
+    echo "<td data-label='Matrícula'>" . htmlspecialchars($columna['matricula_alumno']) . "</td>";
+    echo "<td data-label='Nombre'>" . htmlspecialchars($columna['nombre_alumno']) . "</td>";
+    echo "<td data-label='Apellido'>" . htmlspecialchars($columna['apellido_alumno']) . "</td>";
+    echo "<td data-label='Email'>" . htmlspecialchars($columna['email_alumno']) . "</td>";
+    echo "<td data-label='Teléfono'>" . htmlspecialchars($columna['telefono_alumno']) . "</td>";
+    echo "<td data-label='DNI'>" . htmlspecialchars($columna['DNI_alumno']) . "</td>";
+    echo "<td data-label='Dirección'>" . htmlspecialchars($columna['direccion_alumno']) . "</td>";
+    echo "<td data-label='Curso'>" . htmlspecialchars($columna['nombre_curso']) . "</td>";
+    echo "<td data-label='Acciones' class='botones-leer'>
+            <a class='editar' href='../formularios/form-editar.php?Alumn=" . htmlspecialchars($columna['matricula_alumno']) . "'>Editar</a>
+            <a class='eliminar' href='eliminar.php?Alumn=" . htmlspecialchars($columna['matricula_alumno']) . "'>Eliminar</a>
           </td>";
     echo "</tr>";
 }
 echo '</tbody>';
-echo '</table>';    
+echo '</table>';
 ?>
 
 

@@ -36,10 +36,6 @@ header {
     padding: 20px;
 }
 
-#direccion{
-    margin-top: 20px;
-    margin-bottom: 15px;
-}
 input,select{
     width: 80%;
     border-radius: 5px;
@@ -59,11 +55,7 @@ input::after{
     justify-content: space-around;
     height: 50%;
 }
-.error{
-    color: red;
-    margin: 10px;
-    font-size: 12px;
-}
+
 
 button{
     color: #e7f5ff;
@@ -92,6 +84,14 @@ button{
     transition: 1s;
     
 } 
+
+#btn-crear{
+    margin-top: 7%;
+}
+#btn-editar{
+    margin-top: 10%;
+}
+
 a:hover,button:hover{
     transition: 1s;
     background-color: #000000;
@@ -122,13 +122,13 @@ a {
 .row{
     display: flex;
     justify-content: space-between;
-    height: 100%;
+    height: 100vh;
 }
 .column-3{
     text-align: center;
     width: 25%;
     background-color: #002049;
-    /* max-width: 50vh; */
+
 }
 .column-7{
     align-content: center;
@@ -147,16 +147,17 @@ a {
     width: 50%; 
     height: 60%;
     text-align: center;
+    margin-bottom: 20%;
 }
 .campo1 {
     width: 50%; 
     text-align: center;
+    height: 60%;
 }
 .direccion{
     padding-top: 30px;
 }
 
-/* login */
 
 #columnas-form {
     display: flex;
@@ -170,9 +171,10 @@ a {
 }
 
 .error {
+    margin-top: -10px;
     color: red; 
     font-size: 12px;
-    margin-top: -10px; 
+    transition: 1s;
 } 
 
 #login_form {

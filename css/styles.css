@@ -95,9 +95,6 @@ h3{
     margin-top: 0%;
     margin-bottom: 0%;
 }
-table{
-    width: 100% !important;
-}
 .datos-tabla {
     border-collapse: collapse;
     overflow:auto;
@@ -113,15 +110,12 @@ td{
     border-top: 1px solid black; 
     border-bottom: 1px solid black; 
 }
-.thead-dark{
+.titulos{
     background-color: #002049 !important;
     color: white !important;
     text-align: center !important;
 }
-.titulos{
-    text-align: center;
 
-}
 .editar, .eliminar,.crear-btn, .btn-session {
     background-color: #002049;
     padding: 10px;
@@ -153,6 +147,27 @@ td{
     border-color: red !important;
 }
 @media screen and (max-width: 600px) {
-    
+    .datos-tabla, .datos-tabla tbody, .datos-tabla tr, .datos-tabla td, .datos-tabla th {
+        display: block;
+    }
+    .titulos{
+        display: none;
+    }
+    .datos-tabla tr {
+        margin-bottom: 15px;
+    }
 
+    .datos-tabla td, .datos-tabla th {
+        text-align: right; 
+    }
+
+    .datos-tabla td::before, .datos-tabla th::before {
+        content: attr(data-label); 
+        position: absolute;
+        left: 10px;
+        width: 45%; 
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+    }
 }

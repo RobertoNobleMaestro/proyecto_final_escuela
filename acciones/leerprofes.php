@@ -31,25 +31,25 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Sexo</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Masculino</a></li>
-                    <li><a class="dropdown-item" href="#">Femenino</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=Masculino">Masculino</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=Femenino">Femenino</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=Otro">Otro</a></li>
                 </ul>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Curso</a>
                 <ul class="dropdown-menu">
                 </li>
-                    <li><a class="dropdown-item" href="#">1º Bachilletato Social</a></li>
-                    <li><a class="dropdown-item" href="#">1º Bachilletato Tecnológico</a></li>
-                    <li><a class="dropdown-item" href="#">1º Bachilletato Científico</a></li>
-                    <li><a class="dropdown-item" href="#">2º Bachilletato Social</a></li>
-                    <li><a class="dropdown-item" href="#">2º Bachilletato Tecnológico</a></li>
-                    <li><a class="dropdown-item" href="#">2º Bachilletato Científico</a></li>
-                    <li><a class="dropdown-item" href="#">1º SMX</a></li>
-                    <li><a class="dropdown-item" href="#">2º SMX</a></li>
-                    <li><a class="dropdown-item" href="#">1º ASIX</a></li>
-                    <li><a class="dropdown-item" href="#">2º ASIX</a></li>
-                    <li><a class="dropdown-item" href="#">2º DAW</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=1">1º Bachilletato Social</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=2">1º Bachilletato Científico</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=3">2º Bachilletato Social</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=4">2º Bachilletato Científico</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=5">1º SMX</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=6">2º SMX</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=7">1º ASIX</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=8">2º ASIX</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=9">1º DAW</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=10">2º DAW</a></li>
                 </ul>
                 </li>
                 </ul>
@@ -60,13 +60,13 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             </div>
         </div>
     </nav>
-    <?php 
+    <?php
         require_once '../conexion.php';
-        require_once './consultaprofes.php';
         $consulta_Prof = $conexion->prepare("
             SELECT COUNT(*)
             FROM tbl_profesores;
         ");
+        require_once './consultaprofes.php';
         $consulta_Prof->execute();
         $total_Prof = $consulta_Prof->fetchAll();
         foreach($total_Prof as $total){
@@ -75,15 +75,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         echo '<form action="../formularios/form-crearprofe.php">
             <button class="crear-btn" type="submit">Crear</button>
             <h1>Total Profesores: '.$verTotalProf.'</h1>
-        </form>';
-        $consulta = $conexion->prepare('
-            SELECT 
-            *     
-            FROM 
-                tbl_profesores 
-            ');
-            $consulta->execute();
-            $resultados = $consulta->fetchAll();
+        </form>';            
             echo '<table class="datos-tabla">';
             echo '<thead class="titulos">';
                 echo '<tr class="thead-dark">';
@@ -104,9 +96,17 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             echo '<tbody>';
             foreach ($resultados as $columna) {
                 echo "<tr class='bordes'>";
-            for ($i = 0; $i < $consulta->columnCount(); $i++) {
-                echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
-            }
+                echo "<td data-label='ID'>" . htmlspecialchars($columna['id_profe']) . "</td>";
+                echo "<td data-label='Nombre'>" . htmlspecialchars($columna['nombre_profe']) . "</td>";
+                echo "<td data-label='Apellido'>" . htmlspecialchars($columna['apellido_profe']) . "</td>";
+                echo "<td data-label='Email'>" . htmlspecialchars($columna['email_profe']) . "</td>";
+                echo "<td data-label='Salario'>" . htmlspecialchars($columna['salario_profe']) . "</td>";
+                echo "<td data-label='Sexo'>" . htmlspecialchars($columna['sexo_profe']) . "</td>";
+                echo "<td data-label='Telefono'>" . htmlspecialchars($columna['telefono_profe']) . "</td>";
+                echo "<td data-label='Dirección'>" . htmlspecialchars($columna['DNI_profe']) . "</td>";
+                echo "<td data-label='Dirección'>" . htmlspecialchars($columna['direccion_profe']) . "</td>";
+                echo "<td data-label='Fecha de contratación'>" . htmlspecialchars($columna['fecha_contrato_profe']) . "</td>"; 
+                echo "<td data-label='Fecha de nacimiento'>" . htmlspecialchars($columna['fecha_nacimi_profe']) . "</td>";                 
             echo "<td class='botones-leer'>
                 <a class='editar' href='../formularios/form-editar-profe.php?Profes=" . $columna['id_profe'] . "'>Editar</a>
                 <a class='eliminar' href='eliminar.php?Profes=" . $columna['id_profe'] . "'>Eliminar</a>
