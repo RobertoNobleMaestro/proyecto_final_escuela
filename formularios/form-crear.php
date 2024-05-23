@@ -27,35 +27,45 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             <h2>Formulario de Inscripción de Alumnos</h2>
                 <div class="campo1">
                     <label for="nombre">Nombre del Alumno:</label><br>
-                    <input type="text" id="nombre" name="nombre" onmouseleave="validaNombre()" >
+                    <input type="text" id="nombre" name="nombre" onmouseleave="validaNombre()">
+                    <br>
+                    <br>
+                    <p class="error" id="error_nombre"></p>
                     <br>
                     <br>
                     <label for="apellidos">Apellidos del Alumno:</label><br>
-                    <input type="text" id="apellidos" name="apellidos" onmouseleave="validaApellidos()" >
+                    <input type="text" id="apellidos" name="apellidos" onmouseleave="validaApellidos()"><br><br>
+                    <p class="error" id="error_apellidos"></p>
                     <br>
                     <br>
                     <label for="email">Email del Alumno:</label><br>
                     <input type="email" id="email" name="email" onmouseleave="validaMail()" ><br><br>
+                    <p class="error" id="error_email"></p>
+                    <br>
+                    <br>
+                    <label for="direccion">Dirección del Alumno:</label><br>
+                <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()"><br><br>
+                <p class="error" id="error_dir"></p> 
                 </div>
                 <div class="campo1">
                 <label for="sexo">Sexo del Alumno:</label><br>                
-                    <select id="sexo" name="sexo" onclick="validaSexo()" >
+                    <select id="sexo" name="sexo" onclick="validaSexo()" ><br><br>
                         <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
                         <option value="Otro">Otro</option>
                     </select><br><br>
+                    <p class="error" id="error_sexo"></p>
                     <label for="telefono">Teléfono del Alumno:</label><br>
-                    <input type="tel" id="telefono" name="telefono" onmouseleave = "validaTelf()"><br>
+                    <input type="tel" id="telefono" name="telefono" onmouseleave = "validaTelf()"><br><br>
+                    <p class="error" id="error_telf"></p>
                     <br>
                     <label for="dni">DNI del Alumno:</label><br>
                     <input type="text" id="dni" name="dni" onmouseleave = "validaDNI()"><br><br>
-                </div>
-                <label for="direccion">Dirección del Alumno:</label><br>
-                <input type="text" id="direccion" name="direccion" onmouseleave="validaDireccion()">
-                <p class="error" id="error"></p>   
-                
-                <label for="curso"> Curso del Alumno:</label><br>   
-                <select id="curso" name="curso" onclick="validaCurso()">
+                    <p class="error" id="error_dni"></p>
+                    <br>
+                    <br>
+                    <label for="curso"> Curso del Alumno:</label>   
+                <select id="curso" name="curso" onclick="validaCurso()"><br><br>
                         <option value="1">1º Bachillerato Social</option>
                         <option value="2">2º Bachillerato Social</option>
                         <option value="3">1º Bachillerato Cientifico</option>
@@ -67,7 +77,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                         <option value="9">DAW1</option>
                         <option value="10">DAW2</option>
                 </select>
-                <!-- <p class="error" id="error_curso"></p> -->
+                <p class="error" id="error_curso"></p>
+                </div>
                 <button type="submit">Crear</button> 
             </form> 
             <div class="login_forma">

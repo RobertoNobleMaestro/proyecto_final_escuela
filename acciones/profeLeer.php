@@ -7,7 +7,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'profe') {
     header("Location: ../formularios/login.php");
     exit();
 }
-
+require_once '../conexion.php';
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +67,18 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'profe') {
             </div>
         </div>
     </nav>
+    <br>
 <?php
-require_once '../conexion.php';
+$consulta_total = $conexion->prepare("
+    SELECT COUNT(*)
+    FROM tbl_alumnos;
+");
+$consulta_total->execute();
+$alumnos = $consulta_total->fetchAll();
+foreach($alumnos as $aluTotal){
+    $total_alus = $aluTotal[0];
+}
+echo "<h1>Total Alumnos: ".$total_alus."</h1>";
 
 $consulta = $conexion->prepare('
     SELECT 
@@ -91,9 +101,9 @@ $consulta = $conexion->prepare('
 
 $consulta->execute();
 $resultados = $consulta->fetchAll();
-echo '<table class="data-table">';
+echo '<table class="datos-tabla">';
 echo '<thead class="titulos">';
-echo '<tr>';
+echo '<tr class="thead-dark">';
     echo "<th>Nombre</th>";
     echo "<th>Apellido</th>";
     echo "<th>email</th>";
@@ -104,12 +114,11 @@ echo '<tr>';
     echo "</tr>";
 echo "<tbody>";
 foreach ($resultados as $columna) {
-    echo "<tr>";
+    echo "<tr class='bordes'>";
     for ($i = 0; $i < $consulta->columnCount(); $i++) {
         echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
     }
 }
-
 echo '</tbody>';
 echo '</table>';    
 ?>

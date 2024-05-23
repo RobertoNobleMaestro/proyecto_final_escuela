@@ -68,10 +68,17 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 </ul>
                 </li>
                 </ul>
-                <form class="d-flex" role="search">
+                <form class="d-flex" role="search" method="get" action="filtrar.php">
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
+                <div id="resultados">
+                    <?php
+                    if (isset($_GET['query'])) {
+                        require 'filtrar.php';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </nav>
@@ -79,11 +86,14 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 require_once 'consulta.php';
 echo '<form action="../formularios/form-crear.php">
         <button class="crear-btn" type="submit">Crear</button>';
-echo    '<div>
-        </div>
-        <h1>Alumnos</h1>
+echo    '<div>';
+            foreach($total_alu as $total_alumnos){
+                $verTotal = $total_alumnos[0];
+            }
+echo        '</div>
+        <h1>Total Alumnos: '.$verTotal.'</h1>
     </form>'; 
-echo '<table>';
+echo '<table class="datos-tabla">';
 echo '<theadclass="titulos">';
 echo '<tr class="thead-dark">';
     echo "<th>Matrícula</th>";
@@ -99,10 +109,10 @@ echo '<tr class="thead-dark">';
 echo '</thead>';
 echo '<tbody>';
 foreach ($resultados as $columna) {
-    echo "<tr>";
+    echo "<tr class='bordes'>";
     for ($i = 0; $i < $consulta->columnCount(); $i++) {
         echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
-    }
+    } 
     echo "<td class='botones-leer'>
             <a class='editar' href='../formularios/form-editar.php?Alumn=".$columna['matricula_alumno'] . "'>Editar</a>
             <a class='eliminar'href='eliminar.php?Alumn=".$columna['matricula_alumno'] . "'>Eliminar</a>
@@ -110,16 +120,11 @@ foreach ($resultados as $columna) {
     echo "</tr>";
 }
 echo '</tbody>';
-foreach($total_alu as $total_alumnos){
-    foreach($total_alumnos as $alumnos){
-        ;
-    }
-}
 echo '</table>';    
 ?>
 
 
-<div >
+<div class="">
     <form method="POST" action=" leerprofes.php"><button type="submit" class="btn-session" >Ver profesores</button></form>
     <form method="POST" action="../acciones/cerrarSesionProfe.php"><button type="submit" class="btn-session">Cerrar Sesion</button></form>
 </div>

@@ -21,6 +21,11 @@ if (isset($_GET['orden']) && ($_GET['orden'] === 'asc' || $_GET['orden'] === 'de
     ");
  } elseif (isset($_GET['orden']) && ($_GET['orden'] === 'Masculino' || $_GET['orden'] === 'Femenino' || $_GET['orden'] == 'Otro')) {
     $orden = $_GET['orden'];
+    $consulta_total = $conexion->prepare("
+        SELECT COUNT(sexo_alumno)
+        FROM tbl_alumnos
+        WHERE sexo_alumno = '$orden';
+    ");
     $consulta = $conexion->prepare("
         SELECT  
             matricula_alumno,
@@ -38,9 +43,14 @@ if (isset($_GET['orden']) && ($_GET['orden'] === 'asc' || $_GET['orden'] === 'de
         ON 
             id_curso = fk_id_curso_alu
         where sexo_alumno = '$orden';
-        "); 
- } elseif (isset($_GET['orden']) && ($_GET['orden'] === '1' || $_GET['orden'] === '2' || $_GET['orden'] == '3' || $_GET['orden'] == '4' || $_GET['orden'] == '5' || $_GET['orden'] == '6' || $_GET['orden'] == '7' || $_GET['orden'] == '8' || $_GET['orden'] == '9' || $_GET['orden'] == '10')) {
+    "); 
+ } elseif (isset($_GET['orden']) && ($_GET['orden'] == '1' || $_GET['orden'] == '2' || $_GET['orden'] == '3' || $_GET['orden'] == '4' || $_GET['orden'] == '5' || $_GET['orden'] == '6' || $_GET['orden'] == '7' || $_GET['orden'] == '8' || $_GET['orden'] == '9' || $_GET['orden'] == '10')) {
         $orden = $_GET['orden'];
+        $consulta_total = $conexion->prepare("
+            SELECT count(*)
+            FROM tbl_alumnos
+            WHERE fk_id_curso_alu = '$orden';
+        ");
         $consulta = $conexion->prepare("
             SELECT  
                 matricula_alumno,
@@ -83,9 +93,8 @@ if (isset($_GET['orden']) && ($_GET['orden'] === 'asc' || $_GET['orden'] === 'de
 if (isset($_GET['orden']) && ($_GET['orden'] === 'masculino' || $_GET['orden'] === 'femenino' || $_GET['orden'] === 'otros')) {
 
 }
+$consulta_total->execute();
+$total_alu = $consulta_total->fetchAll();
 $consulta->execute();
 $resultados = $consulta->fetchAll();
 ?>
-
-
-

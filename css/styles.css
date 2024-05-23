@@ -100,24 +100,23 @@ table{
 }
 .datos-tabla {
     border-collapse: collapse;
-    display: inline-block;
     overflow:auto;
     text-align: center;
+    width: 100%;
 }
-th,td{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+
+td{
+    padding:10px !important;
+    text-align: center !important;
 }
-.datos-tabla th, .datos-tabla td {
-    text-align: center;
+.bordes{
+    border-top: 1px solid black; 
+    border-bottom: 1px solid black; 
 }
 .thead-dark{
     background-color: #002049 !important;
     color: white !important;
-    text-align: center;
-}
-.data-tabla th {
-    background-color: #f2f2f2;
+    text-align: center !important;
 }
 .titulos{
     text-align: center;
@@ -129,6 +128,9 @@ th,td{
     color: white;
     text-decoration: none;
     margin-right: 10px;
+    transition: 0.5s;
+    border-radius: 10px; 
+    border: none;
 
 }
 .botones-leer{
@@ -137,8 +139,9 @@ th,td{
     border: none;
 }
 
-.editar:hover, .eliminar:hover,.crear-btn:hover, .btn-session:hover {
-    text-decoration: underline;
+.editar:hover, .eliminar:hover, .crear-btn:hover, .btn-session:hover {
+    transition: 0.5s;
+    transform: scale(1.1);
 }
 
 .alumnos{
@@ -148,4 +151,8 @@ th,td{
 
 .is-invalid{
     border-color: red !important;
+}
+@media screen and (max-width: 600px) {
+    
+
 }

@@ -24,8 +24,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle enlace-barra" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Órden alfabético</a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">A-Z</a></li>
-                    <li><a class="dropdown-item" href="#">Z-A</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=asc">A-Z</a></li>
+                    <li><a class="dropdown-item" href="./leerprofes.php?orden=desc">Z-A</a></li>
                 </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -61,11 +61,21 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         </div>
     </nav>
     <?php 
+        require_once '../conexion.php';
+        require_once './consultaprofes.php';
+        $consulta_Prof = $conexion->prepare("
+            SELECT COUNT(*)
+            FROM tbl_profesores;
+        ");
+        $consulta_Prof->execute();
+        $total_Prof = $consulta_Prof->fetchAll();
+        foreach($total_Prof as $total){
+            $verTotalProf = $total[0];
+        }
         echo '<form action="../formularios/form-crearprofe.php">
             <button class="crear-btn" type="submit">Crear</button>
-            <h1>Profesores</h1>
+            <h1>Total Profesores: '.$verTotalProf.'</h1>
         </form>';
-        require_once '../conexion.php';
         $consulta = $conexion->prepare('
             SELECT 
             *     
@@ -75,9 +85,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
             $consulta->execute();
             $resultados = $consulta->fetchAll();
             echo '<table class="datos-tabla">';
-            echo '<thead>';
+            echo '<thead class="titulos">';
                 echo '<tr class="thead-dark">';
-                    echo "<th>Matrícula</th>";
+                    echo "<th>ID</th>";
                     echo "<th>Nombre</th>";
                     echo "<th>Apellido</th>";
                     echo "<th>email</th>";
@@ -91,10 +101,9 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                     echo "<th>Acciones</th>";
                 echo "</tr>";
             echo '</thead>';
-            echo '</thead>';
             echo '<tbody>';
             foreach ($resultados as $columna) {
-                echo "<tr>";
+                echo "<tr class='bordes'>";
             for ($i = 0; $i < $consulta->columnCount(); $i++) {
                 echo "<td>" . htmlspecialchars($columna[$i]) . "</td>";
             }
