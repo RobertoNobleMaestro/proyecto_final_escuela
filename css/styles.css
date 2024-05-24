@@ -159,26 +159,67 @@ td{
     .datos-tabla, .datos-tabla tbody, .datos-tabla tr, .datos-tabla td, .datos-tabla th {
         display: block;
     }
-    .titulos{
+    .titulos {
         display: none;
     }
     .datos-tabla tr {
         margin-bottom: 15px;
     }
-
     .datos-tabla td, .datos-tabla th {
         text-align: right; 
+        position: relative;
+        padding-left: 40%;
+        font-size: 9px;
+        
     }
- 
-
-
     .datos-tabla td::before, .datos-tabla th::before {
         content: attr(data-label); 
-        position: absolute;
-        left: 10px;
-        width: 45%; 
-        padding-right: 10px;
+        position:absolute;
+        left: 3px;
+        width: 15%; 
+        padding-right: 5px; 
         white-space: nowrap;
         text-align: left;
+        background-color: #002049; 
+        color: #FFFFFF; 
+        padding: 3px; 
+        border-radius: 5px;
+        font-size: 9px;
+    }
+    #izquierda {
+        width: 100%;
+    }
+    .botones-leer a {
+        font-size: 12px; 
+        padding: 5px 10px; 
+        display: inline-block;
+        margin: 2px 0; 
+    }
+}
+
+
+@media (max-width: 728px) {
+
+    #contenedor_derecha {
+        display: none; 
+    }
+
+    #contenedor_izquierda {
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px;
+    }
+
+    #cuadrado {
+        position: absolute;
+        top: 30%;
+        width: 70%;
+    }
+
+    img#izquierda {
+        position: absolute;
+        top: 20px;
+        left: 20%;
+        width: 60%;
     }
 }

@@ -98,6 +98,25 @@ if (isset($_GET['orden']) && ($_GET['orden'] === 'asc' || $_GET['orden'] === 'de
 }
 if (isset($_GET['query'])) {
     $buscar = $_GET['query'];
+    $consulta_total= $conexion->prepare("
+        SELECT 
+            COUNT(*)
+        FROM
+            tbl_alumnos
+        INNER JOIN
+            tbl_cursos
+        ON
+            id_curso = fk_id_curso_alu
+        WHERE nombre_alumno LIKE :buscar
+        OR apellido_alumno LIKE :buscar
+        OR email_alumno LIKE :buscar
+        OR telefono_alumno LIKE :buscar
+        OR DNI_alumno LIKE :buscar
+        OR direccion_alumno LIKE :buscar
+        OR nombre_curso LIKE :buscar
+    ");
+    $searchTerm = "%" . $buscar . "%";
+    $consulta_total->bindParam(':buscar', $searchTerm, PDO::PARAM_STR);
     $consulta = $conexion->prepare("
         SELECT 
             *

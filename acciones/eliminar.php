@@ -44,4 +44,5 @@ if (isset($_SESSION['role']) || $_SESSION['role'] == 'admin') {
     header("Location: ../formularios/login.php");
     exit();
 }
-?>
+
+

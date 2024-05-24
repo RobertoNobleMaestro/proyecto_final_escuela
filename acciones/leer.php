@@ -17,6 +17,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Alumnos</title>
+
 </head>
 <body>
     <?php
@@ -89,7 +90,7 @@ echo        '</div>
         <h1>Total Alumnos: '.$verTotal.'</h1>
     </form>'; 
 echo '<table class="datos-tabla">';
-echo '<thead class="titulos">';
+echo '<thead class="titulos" class="azul">';
 echo '<tr class="thead-dark">';
     echo "<th>Matrícula</th>";
     echo "<th>Nombre</th>";

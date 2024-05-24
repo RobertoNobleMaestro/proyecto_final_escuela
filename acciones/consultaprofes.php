@@ -69,6 +69,25 @@ try {
     }
     if (isset($_GET['query'])) {
         $buscar = $_GET['query'];
+        $consulta_Prof = $conexion->prepare("
+            SELECT 
+                COUNT(*)
+            FROM
+                tbl_profesores
+            WHERE 
+            nombre_profe LIKE :buscar
+            OR apellido_profe LIKE :buscar
+            OR email_profe LIKE :buscar
+            OR salario_profe LIKE :buscar
+            OR sexo_profe LIKE :buscar
+            OR telefono_profe LIKE :buscar
+            OR DNI_profe LIKE :buscar
+            OR direccion_profe LIKE :buscar
+            OR fecha_contrato_profe LIKE :buscar
+            OR fecha_nacimi_profe LIKE :buscar
+        ");
+        $searchTerm = "%" . $buscar . "%";
+        $consulta_Prof->bindParam(':buscar', $searchTerm, PDO::PARAM_STR);
         $consulta = $conexion->prepare("
             SELECT 
             *   

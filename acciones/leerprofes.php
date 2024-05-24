@@ -107,11 +107,11 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 echo "<td data-label='Dirección'>" . htmlspecialchars($columna['direccion_profe']) . "</td>";
                 echo "<td data-label='Fecha de contratación'>" . htmlspecialchars($columna['fecha_contrato_profe']) . "</td>"; 
                 echo "<td data-label='Fecha de nacimiento'>" . htmlspecialchars($columna['fecha_nacimi_profe']) . "</td>";                 
-            echo "<td class='botones-leer'>
-                <a class='editar' href='../formularios/form-editar-profe.php?Profes=" . $columna['id_profe'] . "'>Editar</a>
-                <a class='eliminar' href='eliminar.php?Profes=" . $columna['id_profe'] . "'>Eliminar</a>
-                </td>";
-            echo "</tr>";
+                echo "<td data-label='Acciones' class='botones-leer'>
+                        <a class='editar' href='../formularios/form-editar-profe.php?Profes=" . $columna['id_profe'] . "'>Editar</a>
+                        <a class='eliminar' href='eliminar.php?Profes=" . $columna['id_profe'] . "'>Eliminar</a>
+                    </td>";
+                echo "</tr>";
             }
             echo '</tbody>';
             echo '</table>';    
