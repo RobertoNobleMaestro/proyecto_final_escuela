@@ -16,7 +16,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'profe') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Alumnos</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg barra">
@@ -64,11 +64,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'profe') {
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
                 <div id="resultados">
-                    <?php
-                    // if (isset($_GET['query'])) {
-                    //     require 'filtrar.php';
-                    // }
-                    ?>
                 </div>
             </div>
         </div>
@@ -77,6 +72,10 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'profe') {
 <?php
 require_once '../conexion.php';
 require_once 'consulta_profe.php';
+$consulta_Prof = $conexion->prepare("
+SELECT COUNT(*)
+FROM tbl_profesores;
+");
 foreach($total_alu as $aluTotal){
     $total_alus = $aluTotal[0];
 }

@@ -71,27 +71,20 @@ try {
         $buscar = $_GET['query'];
         $consulta = $conexion->prepare("
             SELECT 
-                matricula_alumno,
-                nombre_alumno,
-                apellido_alumno, 
-                email_alumno, 
-                telefono_alumno, 
-                DNI_alumno, 
-                direccion_alumno, 
-                nombre_curso 
+            *   
             FROM
-                tbl_alumnos
-            INNER JOIN
-                tbl_cursos
-            ON
-                id_curso = fk_id_curso_alu
-            WHERE nombre_alumno LIKE :buscar
-            OR apellido_alumno LIKE :buscar
-            OR email_alumno LIKE :buscar
-            OR telefono_alumno LIKE :buscar
-            OR DNI_alumno LIKE :buscar
-            OR direccion_alumno LIKE :buscar
-            OR nombre_curso LIKE :buscar
+                tbl_profesores
+            WHERE 
+            nombre_profe LIKE :buscar
+            OR apellido_profe LIKE :buscar
+            OR email_profe LIKE :buscar
+            OR salario_profe LIKE :buscar
+            OR sexo_profe LIKE :buscar
+            OR telefono_profe LIKE :buscar
+            OR DNI_profe LIKE :buscar
+            OR direccion_profe LIKE :buscar
+            OR fecha_contrato_profe LIKE :buscar
+            OR fecha_nacimi_profe LIKE :buscar
         ");
         $searchTerm = "%" . $buscar . "%";
         $consulta->bindParam(':buscar', $searchTerm, PDO::PARAM_STR);

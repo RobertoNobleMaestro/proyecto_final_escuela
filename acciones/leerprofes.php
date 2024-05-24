@@ -10,7 +10,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
+    <title>Profesores</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg barra">
@@ -53,8 +53,8 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 </ul>
                 </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <form class="d-flex" role="search" method="GET" action="">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"  name="query">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
             </div>

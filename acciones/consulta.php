@@ -97,14 +97,7 @@ if (isset($_GET['query'])) {
     $buscar = $_GET['query'];
     $consulta = $conexion->prepare("
         SELECT 
-            matricula_alumno,
-            nombre_alumno,
-            apellido_alumno, 
-            email_alumno, 
-            telefono_alumno, 
-            DNI_alumno, 
-            direccion_alumno, 
-            nombre_curso 
+            *
         FROM
             tbl_alumnos
         INNER JOIN
