@@ -39,7 +39,7 @@ try {
                 INNER JOIN 
                 tbl_cursos 
                 ON 
-                tbl_asignaturas.fk_id_curso = tbl_cursos.id_curso
+                   tbl_asignaturas.fk_id_curso = tbl_cursos.id_curso
                 where id_curso = '$orden';
             ");
             $consulta = $conexion->prepare("
@@ -58,8 +58,7 @@ try {
             ON 
             tbl_asignaturas.fk_id_curso = tbl_cursos.id_curso
             where id_curso = '$orden';
-    
-                ");
+            ");
      } else {
         $consulta = $conexion->prepare("
             SELECT  
@@ -67,6 +66,35 @@ try {
             FROM 
                 tbl_profesores;
         ");
+    }
+    if (isset($_GET['query'])) {
+        $buscar = $_GET['query'];
+        $consulta = $conexion->prepare("
+            SELECT 
+                matricula_alumno,
+                nombre_alumno,
+                apellido_alumno, 
+                email_alumno, 
+                telefono_alumno, 
+                DNI_alumno, 
+                direccion_alumno, 
+                nombre_curso 
+            FROM
+                tbl_alumnos
+            INNER JOIN
+                tbl_cursos
+            ON
+                id_curso = fk_id_curso_alu
+            WHERE nombre_alumno LIKE :buscar
+            OR apellido_alumno LIKE :buscar
+            OR email_alumno LIKE :buscar
+            OR telefono_alumno LIKE :buscar
+            OR DNI_alumno LIKE :buscar
+            OR direccion_alumno LIKE :buscar
+            OR nombre_curso LIKE :buscar
+        ");
+        $searchTerm = "%" . $buscar . "%";
+        $consulta->bindParam(':buscar', $searchTerm, PDO::PARAM_STR);
     }
     $consulta_Prof->execute();
     $total_Prof = $consulta_Prof->fetchAll();

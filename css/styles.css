@@ -89,17 +89,14 @@ p{
     color: #e5e6e7;
     font-size: 38px;
     text-align: center;
+    margin:0px;
 }
 
-h3{
-    margin-top: 0%;
-    margin-bottom: 0%;
-}
+
 .datos-tabla {
     border-collapse: collapse;
-    overflow:auto;
     text-align: center;
-    width: 100%;
+    width:  100%;
 }
 
 td{
@@ -146,7 +143,19 @@ td{
 .is-invalid{
     border-color: red !important;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1400px) {
+    .datos-tabla{
+        width: 100%;
+    }
+    
+    td{
+        padding:5px !important;
+        font-size: 12px;
+    }
+
+}
+
+@media screen and (max-width: 728px) {
     .datos-tabla, .datos-tabla tbody, .datos-tabla tr, .datos-tabla td, .datos-tabla th {
         display: block;
     }
@@ -160,6 +169,8 @@ td{
     .datos-tabla td, .datos-tabla th {
         text-align: right; 
     }
+ 
+
 
     .datos-tabla td::before, .datos-tabla th::before {
         content: attr(data-label); 

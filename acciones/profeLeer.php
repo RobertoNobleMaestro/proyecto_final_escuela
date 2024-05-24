@@ -7,7 +7,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'profe') {
     header("Location: ../formularios/login.php");
     exit();
 }
-require_once '../conexion.php';
 ?>
 
 <!DOCTYPE html>
@@ -60,15 +59,15 @@ require_once '../conexion.php';
                 </ul>
                 </li>
                 </ul>
-                <form class="d-flex" role="search" method="get" action="filtrar.php">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <form class="d-flex" role="search" method="get" action="">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
                 <div id="resultados">
                     <?php
-                    if (isset($_GET['query'])) {
-                        require 'filtrar.php';
-                    }
+                    // if (isset($_GET['query'])) {
+                    //     require 'filtrar.php';
+                    // }
                     ?>
                 </div>
             </div>
@@ -76,39 +75,12 @@ require_once '../conexion.php';
     </nav>
     <br>
 <?php
-// require_once 'consulta.php';
-$consulta_total = $conexion->prepare("
-    SELECT COUNT(*)
-    FROM tbl_alumnos;
-");
-$consulta_total->execute();
-$total_alu = $consulta_total->fetchAll();
+require_once '../conexion.php';
+require_once 'consulta_profe.php';
 foreach($total_alu as $aluTotal){
     $total_alus = $aluTotal[0];
 }
 echo "<h1>Total Alumnos: ".$total_alus."</h1>";
-
-$consulta = $conexion->prepare('
-    SELECT 
-        nombre_alumno, 
-        apellido_alumno, 
-        email_alumno, 
-        telefono_alumno, 
-        DNI_alumno, 
-        direccion_alumno, 
-        nombre_curso 
-    FROM 
-        tbl_alumnos 
-    INNER JOIN 
-        tbl_cursos 
-    ON 
-        id_curso = fk_id_curso_alu
-    ORDER BY 
-        matricula_alumno;
-');
-
-$consulta->execute();
-$resultados = $consulta->fetchAll();
 echo '<table class="datos-tabla">';
 echo '<thead class="titulos">';
 echo '<tr class="thead-dark">';

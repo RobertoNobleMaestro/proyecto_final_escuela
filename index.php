@@ -36,18 +36,6 @@ session_start();
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php
-        // if(isset($_GET['intruso']) && ($_GET['intruso'] == 1)){
-        //     echo "<script>
-        //             Swal.fire({
-        //             icon: 'error',
-        //             title: 'Error',
-        //             text: 'Haz click en Iniciar sesion'});
-        //         </script>"; 
-        // }
-
-?>
-
 </body>
 </html>
 

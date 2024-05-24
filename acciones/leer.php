@@ -68,22 +68,18 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 </ul>
                 </li>
                 </ul>
-                <form class="d-flex" role="search" method="get" action="8.php">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <form class="d-flex" role="search" method="GET" action="">
+                    <input class="form-control me-2" type="search" name="query" placeholder="Buscar" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
+                    </form>
                 <div id="resultados">
-                    <?php
-                    if (isset($_GET['query'])) {
-                        require 'filtrar.php';
-                    }
-                    ?>
                 </div>
             </div>
         </div>
     </nav>
 <?php
 require_once 'consulta.php';
+// require_once 'barraBuacar.php'
 echo '<form action="../formularios/form-crear.php">
         <button class="crear-btn" type="submit">Crear</button>';
 echo    '<div>';

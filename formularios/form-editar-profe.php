@@ -35,7 +35,7 @@ if (isset($_GET['Profes'])) {
             <img src="../img/logo.png"  id="logo" alt="">
         </div>
         <div class="column-7">
-            <form action="../acciones/editar.php" method="POST" class="form-estr">
+            <form action="../acciones/editarprofes.php" method="POST" class="form-estr">
             <h2>Formulario de Inscripción de Profesores</h2>
                 <div class="campo">
                 <label for="ID">Id del profesor:</label><br>
@@ -68,10 +68,10 @@ if (isset($_GET['Profes'])) {
                     <input type="text" id="dni" name="dni" onmouseleave = "validaDNI()" value="<?php echo $resultados['DNI_profe']; ?>"><br><br>
                     <p class="error" id="error_dni"></p>
                     <label for="contrato">Fecha de contratación:</label><br>
-                    <input type="contrato" id="contrato" name="contrato"  value="<?php echo $resultados['fecha_contrato_profe']; ?>"onmouseleave="validacontra()"> <br><br>
+                    <input type="date" id="contrato" name="contrato"  value="<?php echo $resultados['fecha_contrato_profe']; ?>"onmouseleave="validacontra()"> <br><br>
                     <p class="error" id="error_contrato"></p>
                     <label for="nacimiento">Fecha de nacimiento:</label><br>
-                    <input type="nacimiento" id="nacimiento" name="nacimiento"  value="<?php echo $resultados['fecha_nacimi_profe']; ?>"onmouseleave="validanacimiento()"><br><br>
+                    <input type="date" id="nacimiento" name="nacimiento"  value="<?php echo $resultados['fecha_nacimi_profe']; ?>"onmouseleave="validanacimiento()"><br><br>
                     <p class="error" id="error_nacimiento"></p>
                 </div><br><br>
                     <label for="direccion" class="direccion">Dirección del profesor:</label><br>
